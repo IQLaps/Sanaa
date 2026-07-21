@@ -1,49 +1,10 @@
-# Sanaa 🏭
+# Sanaa - E-commerce Platform
 
-منصة تسوق إلكترونية حديثة للمنتجات الإلكترونية الصناعية | Modern E-commerce Platform for Industrial Electronic Products
+## Project Information
 
-## Features ✨
+**Sanaa** (صنعة) is a modern e-commerce platform designed specifically for industrial electronic products. Built with React, Node.js/Express, and PostgreSQL.
 
-- 🛍️ **Modern Shopping Experience** - واجهة مستخدم حديثة وسهلة الاستخدام
-- 🔐 **Secure Authentication** - نظام تسجيل دخول آمن مع JWT
-- 💳 **Payment Integration** - نظام دفع متقدم
-- 📦 **Inventory Management** - إدارة المخزون الذكية
-- 🎯 **Product Categories** - فئات ومنتجات منظمة
-- 📊 **Admin Dashboard** - لوحة تحكم شاملة
-- 🛒 **Shopping Cart** - سلة تسوق ذكية
-- 📱 **Responsive Design** - متوافق مع جميع الأجهزة
-- ⚡ **High Performance** - سرعة عالية وأداء ممتاز
-
-## Tech Stack 🚀
-
-### Frontend
-- React 18+ with TypeScript
-- Tailwind CSS for styling
-- React Router for navigation
-- Axios for API calls
-- Redux/Context for state management
-
-### Backend
-- Node.js with Express
-- PostgreSQL database
-- JWT authentication
-- RESTful API architecture
-
-### DevOps
-- Docker support
-- GitHub Actions CI/CD
-
-## Project Structure 📁
-
-```
-Sanaa/
-├── frontend/          # React application
-├── backend/           # Express server
-├── docker/           # Docker configurations
-└── docs/             # Documentation
-```
-
-## Getting Started 🏃
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -60,53 +21,145 @@ Sanaa/
 
 2. **Install dependencies**
    ```bash
-   # Backend
-   cd backend
-   npm install
-
-   # Frontend
-   cd ../frontend
    npm install
    ```
 
-3. **Setup environment variables**
+3. **Setup environment files**
    ```bash
-   # Backend .env
-   DATABASE_URL=postgresql://user:password@localhost:5432/sanaa
-   JWT_SECRET=your_secret_key
-   NODE_ENV=development
-
-   # Frontend .env
-   VITE_API_URL=http://localhost:5000
+   cp backend/.env.example backend/.env
+   cp frontend/.env.example frontend/.env
    ```
 
-4. **Run the application**
-   ```bash
-   # Terminal 1 - Backend
-   cd backend
-   npm run dev
+4. **Configure database**
+   - Edit `backend/.env` with your PostgreSQL credentials
+   - The database will be created automatically on first run
 
-   # Terminal 2 - Frontend
-   cd frontend
+5. **Run development servers**
+   ```bash
    npm run dev
    ```
 
-## API Documentation 📚
+   This will start both backend (http://localhost:5000) and frontend (http://localhost:5173)
 
-See [docs/API.md](docs/API.md) for detailed API documentation.
+### Available Commands
 
-## Contributing 🤝
+```bash
+# Development
+npm run dev                 # Run both servers
+npm run dev:backend       # Backend only
+npm run dev:frontend      # Frontend only
 
-Contributions are welcome! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details.
+# Production
+npm run build             # Build both
+npm run build:backend     # Backend only
+npm run build:frontend    # Frontend only
 
-## License 📄
+# Testing & Linting
+npm run test             # Run all tests
+npm run lint             # Lint all code
+npm run lint:backend     # Backend linting
+npm run lint:frontend    # Frontend linting
+```
+
+## Docker Support
+
+### Using Docker Compose
+
+```bash
+docker-compose up --build
+```
+
+This will start:
+- PostgreSQL (port 5432)
+- Backend API (port 5000)
+- Frontend (port 5173)
+
+## Project Structure
+
+```
+Sanaa/
+├── frontend/              # React application
+│   ├── src/
+│   │   ├── api/          # API client configuration
+│   │   ├── pages/        # Route pages
+│   │   ├── components/   # React components
+│   │   ├── store/        # Zustand state management
+│   │   └── App.tsx       # Main component
+│   └── package.json
+├── backend/              # Express server
+│   ├── src/
+│   │   ├── routes/       # API routes
+│   │   ├── db/          # Database configuration
+│   │   └── index.ts      # Server entry point
+│   └── package.json
+├── docker-compose.yml    # Docker configuration
+├── docs/
+│   └── API.md           # API documentation
+└── README.md
+```
+
+## Features
+
+- ✅ User Authentication (Register/Login)
+- ✅ Product Browsing & Search
+- ✅ Shopping Cart Management
+- ✅ Order Management
+- ✅ User Profile Management
+- ✅ Category System
+- ✅ Responsive Design
+- ✅ PostgreSQL Database
+- ✅ RESTful API
+- ✅ Docker Support
+
+## Technology Stack
+
+### Frontend
+- **React 18** - UI Framework
+- **TypeScript** - Type Safety
+- **Tailwind CSS** - Styling
+- **React Router** - Navigation
+- **Zustand** - State Management
+- **Axios** - HTTP Client
+- **Vite** - Build Tool
+
+### Backend
+- **Node.js** - Runtime
+- **Express** - Web Framework
+- **PostgreSQL** - Database
+- **JWT** - Authentication
+- **TypeScript** - Type Safety
+
+## API Documentation
+
+See [docs/API.md](docs/API.md) for complete API documentation.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
 
 This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
-## Support 💬
+## Support
 
 For support, email support@sanaa.com or open an issue on GitHub.
 
+## Roadmap
+
+- [ ] Payment Gateway Integration (Stripe)
+- [ ] Admin Dashboard
+- [ ] Product Reviews & Ratings
+- [ ] Wishlist Feature
+- [ ] Inventory Management
+- [ ] Email Notifications
+- [ ] Multi-language Support
+- [ ] Analytics Dashboard
+
 ---
 
-**Made with ❤️ by IQLaps**
+Made with ❤️ by IQLaps
