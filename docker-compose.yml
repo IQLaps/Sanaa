@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: sanaa-postgres
+    environment:
+      POSTGRES_USER: sanaa_user
+      POSTGRES_PASSWORD: sanaa_password
+      POSTGRES_DB: sanaa_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sanaa-network
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sanaa-backend
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://sanaa_user:sanaa_password@postgres:5432/sanaa_db
+      JWT_SECRET: your_jwt_secret_key_change_in_production
+      PORT: 5000
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgres
+    networks:
+      - sanaa-network
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sanaa-frontend
+    environment:
+      VITE_API_URL: http://backend:5000/api/v1
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    networks:
+      - sanaa-network
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+volumes:
+  postgres_data:
+
+networks:
+  sanaa-network:
+    driver: bridge
